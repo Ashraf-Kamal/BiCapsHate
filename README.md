@@ -6,11 +6,11 @@ This repository contains the implementation of the deep learning model called Bi
 Pre-requisite:
 -------------------------
 1. Twitter REST API
-2. Keras
+2. Keras 2.2.4
 3. Numpy
 4. Pandas
 5. Python 3.7
 6. GloVe
 7. Tensorflow 1.15
-8. Keras 2.2.4
+
 
