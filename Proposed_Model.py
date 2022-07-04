@@ -22,8 +22,6 @@ from keras.layers.convolutional import Convolution1D, MaxPooling1D
 from keras_self_attention import SeqSelfAttention
 import Capsule_Class as Caps
 import Attention_Class as Attention
-#from graphviz import Digraph
-#import pydotplus
 from tensorflow import keras
 from tensorflow.keras import layers
 
@@ -63,7 +61,7 @@ def f1_m(y_true, y_pred):
     recall = recall_m(y_true, y_pred)
     return 2*((precision*recall)/(precision+recall+K.epsilon()))
 
-#df1 = pd.read_csv(r'Linguistic_Features\FV_Results\Davidson_Balanced.csv',delimiter=',',encoding='latin-1')
+df1 = pd.read_csv(r'Linguistic_Features\FV_Results\Davidson_Balanced.csv',delimiter=',',encoding='latin-1')
 #df1 = pd.read_csv(r'Linguistic_Features\FV_Results\Founta_Balanced.csv',delimiter=',',encoding='latin-1')
 #df1 = pd.read_csv(r'Linguistic_Features\FV_Results\Gao_Balanced.csv',delimiter=',',encoding='latin-1')
 #df1 = pd.read_csv(r'Linguistic_Features\FV_Results\Roy_Balanced.csv',delimiter=',',encoding='latin-1')
@@ -71,7 +69,7 @@ def f1_m(y_true, y_pred):
 
 #df1 = pd.read_csv(r'Linguistic_Features\FV_Results\Davidson_Unbalanced.csv',delimiter=',',encoding='latin-1')
 #df1 = pd.read_csv(r'Linguistic_Features\FV_Results\Founta_Unbalanced.csv',delimiter=',',encoding='latin-1')
-df1 = pd.read_csv(r'Linguistic_Features\FV_Results\Gao_Unbalanced.csv',delimiter=',',encoding='latin-1')
+#df1 = pd.read_csv(r'Linguistic_Features\FV_Results\Gao_Unbalanced.csv',delimiter=',',encoding='latin-1')
 #df1 = pd.read_csv(r'Linguistic_Features\FV_Results\Roy_Unbalanced.csv',delimiter=',',encoding='latin-1')
 #df1 = pd.read_csv(r'Linguistic_Features\FV_Results\HateXplain_Unbalanced.csv',delimiter=',',encoding='latin-1')
 
@@ -89,7 +87,7 @@ print (X1_train)
 print (Y1_train)
 
 
-#df = pd.read_csv(r'Final_Datasets\Davidson_17\Davidson_Balanced.csv',delimiter=',',encoding='latin-1')
+df = pd.read_csv(r'Final_Datasets\Davidson_17\Davidson_Balanced.csv',delimiter=',',encoding='latin-1')
 #df = pd.read_csv(r'Final_Datasets\Founta_18\Founta_Balanced.csv',delimiter=',',encoding='latin-1')
 #df = pd.read_csv(r'Final_Datasets\Gao_17\Gao_Balanced.csv',delimiter=',',encoding='latin-1')
 #df = pd.read_csv(r'Final_Datasets\Roy_20\Roy_Balanced.csv',delimiter=',',encoding='latin-1')
@@ -97,7 +95,7 @@ print (Y1_train)
 
 #df = pd.read_csv(r'Final_Datasets\Davidson_17\Davidson_Unbalanced.csv',delimiter=',',encoding='latin-1')
 #df = pd.read_csv(r'Final_Datasets\Founta_18\Founta_Unbalanced.csv',delimiter=',',encoding='latin-1')
-df = pd.read_csv(r'Final_Datasets\Gao_17\Gao_Unbalanced.csv',delimiter=',',encoding='latin-1')
+#df = pd.read_csv(r'Final_Datasets\Gao_17\Gao_Unbalanced.csv',delimiter=',',encoding='latin-1')
 #df = pd.read_csv(r'Final_Datasets\Roy_20\Roy_Unbalanced.csv',delimiter=',',encoding='latin-1')
 #df = pd.read_csv(r'Final_Datasets\HateXplain\HateXplain_Bi_Imbalance.csv',delimiter=',',encoding='latin-1')
 
@@ -116,7 +114,7 @@ Y = Y.reshape(-1,1)
 train_msg, test_msg, train_labels, test_labels = train_test_split(X, Y,test_size=0.2, random_state = 42)
 
 max_words =5000
-max_len = 65
+max_len = 20
 
 tokenizer= Tokenizer(num_words=max_words)
 tokenizer.fit_on_texts(train_msg)
@@ -147,7 +145,7 @@ for word, index in tokenizer.word_index.items():
 print (embedding_matrix)
 
 
-main_input = Input(shape=(65,), name='main_input')
+main_input = Input(shape=(20,), name='main_input')
 aux_input = Input(shape=(26,), name='aux_vector_input')
 
 
@@ -193,31 +191,14 @@ print ('Testing precision:', np.mean(hist.history['val_precision_m']))
 print ('Testing recall:', np.mean(hist.history['val_recall_m']))
 print ('Testing f-score:', np.mean(hist.history['val_f1_m']))
 
-#model.save('Model_Result\model.Proposed_Model_Davidson_Balanced')
+model.save('Model_Result\model.Proposed_Model_Davidson_Balanced')
 #model.save('Model_Result\model.Proposed_Model_Founta_Balanced')
 #model.save('Model_Result\model.Proposed_Model_Gao_Balanced')
 #model.save('Model_Result\model.Proposed_Model_Roy_Balanced')
 #model.save('Model_Result\model.Proposed_Model_HateXplain_Balanced')
-
-
 #model.save('Model_Result\model.Proposed_Model_Davidson_Unbalanced')
 #model.save('Model_Result\model.Proposed_Model_Founta_Unbalanced')
-model.save('Model_Result\model.Proposed_Model_Gao_Unbalanced')
+#model.save('Model_Result\model.Proposed_Model_Gao_Unbalanced')
 #model.save('Model_Result\model.Proposed_Model_Roy_Unbalanced')
 #model.save('Model_Result\model.Proposed_Model_HateXplain_Unbalanced')
-
-
-'''
-y_pred = model.predict(testing_padded).ravel()
-
-nn_fpr_keras, nn_tpr_keras, nn_thresholds_keras = roc_curve(testing_padded, y_pred)
-auc_keras = auc(nn_fpr_keras, nn_tpr_keras)
-plt.plot(nn_fpr_keras, nn_tpr_keras, marker='.', color='red')
-plt.xlabel('False Positive Rate')
-plt.ylabel('True Positive Rate')
-plt.title('ROC Curve')
-#plt.legend(loc="lower right")
-plt.show()
-'''
-
 
