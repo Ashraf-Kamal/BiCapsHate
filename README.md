@@ -16,7 +16,9 @@ Pre-requisite:
 -------------------------
 Cite Paper:
 -------------------------
-A. Kamal, T. Anwar, V. K. Sejwal and M. Fazil, "BiCapsHate: Attention to the Linguistic Context of Hate via Bidirectional Capsules and Hatebase," in IEEE Transactions on Computational Social Systems, doi: 10.1109/TCSS.2023.3236527
+A. Kamal, T. Anwar, V. K. Sejwal and M. Fazil, "BiCapsHate: Attention to the Linguistic Context of Hate via Bidirectional Capsules and Hatebase," in IEEE Transactions on Computational Social Systems, 
+
+Doi: 10.1109/TCSS.2023.3236527
 
 Link: https://ieeexplore.ieee.org/abstract/document/10022007
 
