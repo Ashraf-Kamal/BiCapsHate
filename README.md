@@ -13,4 +13,7 @@ Pre-requisite:
 6. GloVe
 7. Tensorflow 1.15
 
-
+-------------------------
+Cite Paper:
+-------------------------
+A. Kamal, T. Anwar, V. K. Sejwal and M. Fazil, "BiCapsHate: Attention to the Linguistic Context of Hate via Bidirectional Capsules and Hatebase," in IEEE Transactions on Computational Social Systems, doi: 10.1109/TCSS.2023.3236527.
